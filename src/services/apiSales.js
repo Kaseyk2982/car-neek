@@ -95,17 +95,21 @@ export async function getSalesAfterDate(date) {
 
 export async function getTodaysPickups() {
   const today = new Date();
+
   today.setHours(0, 0, 0, 0);
 
   const tomorrow = new Date(today);
   tomorrow.setDate(tomorrow.getDate() + 1);
+
+  const yesterday = new Date(today);
+  yesterday.setDate(yesterday.getDate() - 1);
 
   const { data, error } = await supabase
     .from("sales")
     .select(
       "*, vehicles!sales_vehicleId_fkey(make, model), customers!sales_customerId_fkey1(fullName)"
     )
-    .gte("pickupDate", today.toISOString())
+    .gte("pickupDate", yesterday.toISOString())
     .lt("pickupDate", tomorrow.toISOString());
 
   if (error) {

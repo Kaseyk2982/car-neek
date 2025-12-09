@@ -8,15 +8,7 @@ export default function PickupDisplay({ todaysPickups, isGettingPickups }) {
       <div className="flex justify-start">
         <Heading as="h2">Todays Pickups</Heading>
       </div>
-      {/* {todaysPickups?.length > 0 ? (
-        <ul>
-          {todaysPickups.map((pickup) => (
-            <PickupItem pickup={pickup} key={pickup.id} />
-          ))}
-        </ul>
-      ) : (
-        <Empty resourceName="pickups" />
-      )} */}
+
       {!isGettingPickups ? (
         todaysPickups?.length > 0 ? (
           <>
