@@ -1,5 +1,7 @@
 # Car-Neek
 
+Built with react-router, supabase, tailwind, tanstack/react-query
+
 [Live Demo](https://car-neek.netlify.app)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
