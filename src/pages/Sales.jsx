@@ -1,3 +1,5 @@
+import AddCustomer from "../features/sales/AddCustomer";
+import AddSale from "../features/sales/AddSale";
 import SalesTable from "../features/sales/SalesTable";
 import SalesTableOperations from "../features/sales/SalesTableOperations";
 import Container from "../ui/Container";
@@ -13,6 +15,10 @@ export default function Sales() {
       </Row>
       <Row>
         <SalesTable />
+        <div className="flex gap-3">
+          <AddCustomer />
+          <AddSale />
+        </div>
       </Row>
     </Container>
   );

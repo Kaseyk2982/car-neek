@@ -11,7 +11,6 @@ export default function SalesRow({
   sale: {
     id: saleId,
     created_at,
-    saleDate,
     salePrice,
     status,
     vehicles: { make, model, image } = {},
@@ -50,7 +49,7 @@ export default function SalesRow({
         </span>
       </div>
       <div className="text-2xl font-medium text-slate-500 font-serif">
-        {formatDate(saleDate)}
+        {formatDate(created_at)}
       </div>
       <div className="text-2xl font-medium text-slate-500 font-serif">
         {formatCurrency(salePrice)}

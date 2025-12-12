@@ -118,3 +118,43 @@ export async function getTodaysPickups() {
   }
   return data;
 }
+
+export async function createCustomer(newCustomer) {
+  const { data, error } = await supabase
+    .from("customers")
+    .insert([{ ...newCustomer }])
+    .select()
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Error creating customer");
+  }
+  return data;
+}
+
+export async function getCustomers() {
+  const { data, error } = await supabase
+    .from("customers")
+    .select("id, fullName");
+
+  if (error) {
+    console.error(error);
+    throw new Error("Error getting customers");
+  }
+  return data;
+}
+
+export async function createSale(newSale) {
+  const { data, error } = await supabase
+    .from("sales")
+    .insert([{ ...newSale }])
+    .select()
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Error creating sale");
+  }
+  return data;
+}

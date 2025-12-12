@@ -27,7 +27,9 @@ function Open({ children, opens: opensWindowName }) {
 function Window({ children, name }) {
   const { openName, close } = useContext(ModalContext);
 
-  const wrapperRef = useOutsideClick(close);
+  const disableOutsideClick = name === "sale-form";
+
+  const wrapperRef = disableOutsideClick ? null : useOutsideClick(close);
 
   if (name !== openName) return null;
 

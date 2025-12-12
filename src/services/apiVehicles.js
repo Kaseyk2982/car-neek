@@ -71,3 +71,16 @@ export async function deleteVehicle(id) {
   }
   return data;
 }
+
+export async function getAvailableVehicles() {
+  const { data, error } = await supabase
+    .from("vehicles")
+    .select("id, make, model")
+    .eq("isSold", false);
+
+  if (error) {
+    console.error(error);
+    throw new Error("Error getting vehicles");
+  }
+  return data;
+}
