@@ -10,7 +10,7 @@ export default function Sales() {
   return (
     <Container>
       <Row type="horizontal">
-        <Heading as="h1">All Sales</Heading>
+        <Heading as="h1">Sales</Heading>
         <SalesTableOperations />
       </Row>
       <Row>

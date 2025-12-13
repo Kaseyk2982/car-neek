@@ -11,7 +11,7 @@ export default function Vehicles() {
     <div>
       <Container>
         <Row type="horizontal">
-          <Heading as="h1">All Vehicles</Heading>
+          <Heading as="h1">Vehicles</Heading>
           <VehicleTableOperations />
         </Row>
         <Row>
