@@ -1,20 +1,32 @@
-// import { twMerge } from "tailwind-merge";
+// function Form({ type = "regular", className = "", ...props }) {
+//   const baseClasses = "overflow-hidden text-[1.4rem]";
+
+//   let variantClasses = "";
+//   if (type === "regular") {
+//     variantClasses =
+//       "p-[1.4rem] px-[4rem] bg-gray-50 border border-solid border-gray-100 rounded-lg";
+//   } else if (type === "modal") {
+//     variantClasses = "w-[80rem]";
+//   }
+
+//   return (
+//     <form
+//       className={`${baseClasses} ${variantClasses} ${className}`}
+//       {...props}
+//     />
+//   );
+// }
 
 function Form({ type = "regular", className = "", ...props }) {
-  // Base styles applied to all variants
-  const baseClasses = "overflow-hidden text-[1.4rem]";
+  const baseClasses = "overflow-x-auto text-base sm:text-[1.4rem] max-w-full"; // Smaller base text (16px), scales up; prevent overflow
 
-  // Variant-specific classes
   let variantClasses = "";
   if (type === "regular") {
     variantClasses =
-      "p-[1.4rem] px-[4rem] bg-gray-50 border border-solid border-gray-100 rounded-lg";
+      "p-4 px-6 sm:p-[1.4rem] sm:px-[4rem] bg-gray-50 border border-solid border-gray-100 rounded-lg"; // Reduced padding on small screens
   } else if (type === "modal") {
-    variantClasses = "w-[80rem]";
+    variantClasses = "w-full sm:w-[80rem] mx-auto"; // Full width on small, fixed on sm+
   }
-
-  // Combine classes (use twMerge if you have it to handle overrides cleanly)
-  // const combinedClasses = twMerge(baseClasses, variantClasses, className);
 
   return (
     <form

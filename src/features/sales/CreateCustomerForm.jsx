@@ -66,7 +66,7 @@ export default function CreateCustomerForm({ onCloseModal, onCloseForm }) {
         />
       </FormRow>
       <div className="flex justify-end gap-3">
-        <Button type="reset" variation="secondary">
+        <Button type="reset" variation="secondary" onClick={close}>
           Cancel
         </Button>
         <Button type="submit">Create customer</Button>

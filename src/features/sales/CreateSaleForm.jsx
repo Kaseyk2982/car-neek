@@ -169,7 +169,7 @@ export default function CreateSaleFrom({ onCloseModal, onCloseForm }) {
         </FormRow>
       )}
       <div className="flex justify-end gap-3">
-        <Button variation="secondary" type="reset">
+        <Button variation="secondary" type="reset" onClick={close}>
           Cancel
         </Button>
         <Button type="submit">Create sale</Button>
