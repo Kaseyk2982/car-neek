@@ -6,6 +6,17 @@ import { PAGE_SIZE } from "../../utils/constants";
 export function useVehicles() {
   const queryClient = useQueryClient();
   const [searchParams] = useSearchParams();
+
+  const filterValue = searchParams.get("isSold");
+  const filter =
+    !filterValue || filterValue === "all"
+      ? null
+      : { field: "isSold", value: filterValue };
+
+  const sortByRaw = searchParams.get("sortBy") || "make-desc";
+  const [field, direction] = sortByRaw.split("-");
+  const sortBy = { field, direction };
+
   const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
 
   const {
@@ -13,22 +24,22 @@ export function useVehicles() {
     data: { data: vehicles, count } = [],
     error,
   } = useQuery({
-    queryKey: ["vehicles", page],
-    queryFn: () => getVehicles(page),
+    queryKey: ["vehicles", filterValue ?? "all", sortBy, page],
+    queryFn: () => getVehicles({ filter, sortBy, page }),
   });
 
   const pageCount = Math.ceil(count / PAGE_SIZE);
 
   if (page < pageCount) {
     queryClient.prefetchQuery({
-      queryKey: ["vehicles", page + 1],
-      queryFn: () => getVehicles(page + 1),
+      queryKey: ["vehicles", filterValue ?? "all", sortBy, page + 1],
+      queryFn: () => getVehicles({ filter, sortBy, page: page + 1 }),
     });
   }
   if (page > 0) {
     queryClient.prefetchQuery({
-      queryKey: ["vehicles", page - 1],
-      queryFn: () => getVehicles(page - 1),
+      queryKey: ["vehicles", filterValue ?? "all", sortBy, page - 1],
+      queryFn: () => getVehicles({ filter, sortBy, page: page - 1 }),
     });
   }
 

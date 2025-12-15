@@ -68,7 +68,7 @@ export default function VehicleRow({ vehicle }) {
           isSold ? "text-red-500" : "text-green-500"
         } `}
       >
-        {isSold ? "sold" : "available"}
+        {isSold ? "sold" : "in stock"}
       </div>
       <div className="flex gap-0 text-md">
         <Modal>

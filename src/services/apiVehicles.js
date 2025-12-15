@@ -1,22 +1,24 @@
 import { PAGE_SIZE } from "../utils/constants";
 import supabase, { supabaseUrl } from "./supabase";
 
-export async function getVehicles(page) {
-  let from, to;
-
-  if (page) {
-    from = (page - 1) * PAGE_SIZE;
-    to = from + PAGE_SIZE - 1;
+export async function getVehicles({ filter, sortBy, page } = {}) {
+  let query = supabase.from("vehicles").select("*", { count: "exact" });
+  if (filter !== null) {
+    query = query.eq(filter.field, filter.value);
   }
-
-  const { data, error, count } = await supabase
-    .from("vehicles")
-    .select("*", { count: "exact" })
-    .order("created_at", { ascending: false })
-    .range(from, to);
-
+  if (sortBy) {
+    query = query.order(sortBy.field, {
+      ascending: sortBy.direction === "asc",
+    });
+  }
+  if (page) {
+    const from = (page - 1) * PAGE_SIZE;
+    const to = from + PAGE_SIZE - 1;
+    query = query.range(from, to);
+  }
+  const { data, error, count } = await query;
   if (error) {
-    console.error(error);
+    console.error("Error loading vehicles:", error);
     throw new Error("Error loading vehicles");
   }
   return { data, count };

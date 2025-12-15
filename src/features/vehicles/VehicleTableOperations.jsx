@@ -16,8 +16,8 @@ export default function VehicleTableOperations() {
       <SortBy
         options={[
           { value: "", label: "CHOOSE A SORT OPTION" },
-          { value: "make-asc", label: "Make: A to Z" },
-          { value: "make-desc", label: "Make: Z to A" },
+          { value: "make-asc", label: "Vehicles: A to Z" },
+          { value: "make-desc", label: "Vehicles: Z to A" },
           { value: "regularPrice-asc", label: "Price: Low to High" },
           { value: "regularPrice-desc", label: "Price: High to Low" },
           { value: "year-asc", label: "Year: Old to New" },

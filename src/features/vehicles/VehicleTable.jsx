@@ -8,41 +8,11 @@ import { PAGE_SIZE } from "../../utils/constants";
 
 export default function VehicleTable() {
   const { isLoading, vehicles, error, count } = useVehicles();
-  const [searchParams] = useSearchParams();
-
-  const filterValue = searchParams.get("isSold") || "all";
 
   if (isLoading) return <Spinner />;
 
   if (!vehicles.length) {
     return <Empty resouceName="vehicles" />;
-  }
-
-  let filteredVehicles;
-  if (filterValue === "true") {
-    filteredVehicles = vehicles.filter((vehicle) => vehicle.isSold === true);
-  }
-  if (filterValue === "false") {
-    filteredVehicles = vehicles.filter((vehicle) => vehicle.isSold === false);
-  }
-  if (filterValue === "all") {
-    filteredVehicles = vehicles;
-  }
-
-  const sortBy = searchParams.get("sortBy") || "soldDate-asc";
-  const [field, direction] = sortBy.split("-");
-  const modifier = direction === "asc" ? 1 : -1;
-  const firstValue = filteredVehicles[0]?.[field];
-  const isStringField = typeof firstValue === "string";
-  let sortedVehicles;
-  if (isStringField) {
-    sortedVehicles = filteredVehicles.sort(
-      (a, b) => a[field].localeCompare(b[field]) * modifier
-    );
-  } else {
-    sortedVehicles = filteredVehicles.sort(
-      (a, b) => (a[field] - b[field]) * modifier
-    );
   }
 
   return (
@@ -58,7 +28,7 @@ export default function VehicleTable() {
         <div></div>
       </Table.Header>
       <Table.Body
-        data={sortedVehicles}
+        data={vehicles}
         render={(vehicle) => <VehicleRow vehicle={vehicle} key={vehicle.id} />}
       />
       {count > PAGE_SIZE && (
