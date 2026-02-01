@@ -9,7 +9,7 @@ export default function AddVehicle() {
         <Button>Create new vehicle</Button>
       </Modal.Open>
       <Modal.Window name="vehicle-form">
-        <CreateVehicleForm />
+        <CreateVehicleForm type="modal" />
       </Modal.Window>
     </Modal>
   );

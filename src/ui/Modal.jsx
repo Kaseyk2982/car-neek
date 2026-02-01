@@ -34,7 +34,7 @@ function Window({ children, name }) {
   if (name !== openName) return null;
 
   return createPortal(
-    <div className="fixed top-0 left-0 w-full h-screen bg-black-30 backdrop-blur-sm z-50 transition-all">
+    <div className="fixed top-0 left-0 w-full overflow-scroll h-screen bg-black-30 backdrop-blur-sm z-50 transition-all">
       <div
         ref={wrapperRef}
         className="fixed top-1/2 left-1/2 bg-gray-50 rounded-lg shadow-lg py-12 px-16 -translate-y-1/2 -translate-x-1/2 transition-all"
@@ -48,7 +48,7 @@ function Window({ children, name }) {
         <div>{cloneElement(children, { onCloseModal: close })}</div>
       </div>
     </div>,
-    document.body
+    document.body,
   );
 }
 
