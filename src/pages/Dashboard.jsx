@@ -8,7 +8,7 @@ export default function Dashboard() {
   return (
     <>
       <Container>
-        <Row type="horizontal">
+        <Row className="flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <Heading as="h1">Dashboard</Heading>
           <DashboardFilter />
         </Row>

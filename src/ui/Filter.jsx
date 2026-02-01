@@ -10,7 +10,7 @@ export default function Filter({ filterField, options }) {
   }
 
   return (
-    <div className="flex gap-2 border border-solid border-gray-100 shadow-sm p-2 rounded-md bg-gray-200 text-gray-50">
+    <div className="flex gap-2 justify-center p-2 rounded-mdtext-gray-50">
       {options.map((option) => {
         const isActive = option.value === filterFieldValue;
         return (

@@ -10,7 +10,7 @@ export default function Vehicles() {
   return (
     <div>
       <Container>
-        <Row type="horizontal">
+        <Row className="flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <Heading as="h1">Vehicles</Heading>
           <VehicleTableOperations />
         </Row>

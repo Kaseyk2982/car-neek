@@ -1,10 +1,3 @@
-/**
- * Row component converted from styled-components to Tailwind utilities.
- * Original behavior:
- * - display: flex
- * - type === 'horizontal' -> justify-content: space-between; align-items: center;
- * - type === 'vertical' -> flex-direction: column; gap: 1.6rem;
- */
 export default function Row({
   type = "vertical",
   children,

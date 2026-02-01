@@ -3,7 +3,7 @@ import SortBy from "../../ui/SortBy";
 
 export default function VehicleTableOperations() {
   return (
-    <div className="flex items-center gap-6">
+    <div className="flex items-center gap-6 justify-center">
       <Filter
         filterField="isSold"
         options={[

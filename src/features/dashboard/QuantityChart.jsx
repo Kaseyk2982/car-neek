@@ -21,7 +21,7 @@ function calculateData(startData, soldCars) {
   const copy = startData.map((obj) => ({ ...obj }));
   function findValue(arr, field) {
     return arr.map((obj) =>
-      obj.price === field ? { ...obj, value: obj.value + 1 } : obj
+      obj.price === field ? { ...obj, value: obj.value + 1 } : obj,
     );
   }
 
@@ -80,7 +80,7 @@ export default function QuantityChart({ sales }) {
               layout="vertical"
               align="right"
               verticalAlign="middle"
-              width="30%"
+              width="20%"
               iconSize={15}
               iconType="circle"
             />

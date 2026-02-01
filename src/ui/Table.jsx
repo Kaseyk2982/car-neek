@@ -1,4 +1,3 @@
-// import { createContext, useContext } from "react";
 import {
   createContext,
   useContext,
@@ -6,67 +5,6 @@ import {
   useEffect,
   Children,
 } from "react";
-
-// const TableContext = createContext();
-
-// export default function Table({ children, columns }) {
-//   return (
-//     <TableContext.Provider value={{ columns }}>
-//       <div
-//         className="border border-solid border-gray-200 text-2xl bg-gray-50 rounded-md overflow-x-auto min-w-full"
-//         role="table"
-//       >
-//         {children}
-//       </div>
-//     </TableContext.Provider>
-//   );
-// }
-
-// function Header({ children }) {
-//   const { columns } = useContext(TableContext);
-
-//   return (
-//     <div
-//       role="row"
-//       as="header"
-//       className="grid py-6 gap-5 px-10 bg-gray-200 border-b border-solid border-b-gray-100 uppercase tracking-normal font-semibold text-gray-600"
-//       columns={columns}
-//       style={{ gridTemplateColumns: columns }}
-//     >
-//       {children}
-//     </div>
-//   );
-// }
-
-// function Row({ children }) {
-//   const { columns } = useContext(TableContext);
-//   return (
-//     <div
-//       role="row"
-//       className="py-4 px-10 grid items-center border-b border-gray-200 last:border-b-0"
-//       style={{ gridTemplateColumns: columns }}
-//     >
-//       {children}
-//     </div>
-//   );
-// }
-
-// function Body({ data, render }) {
-//   return <section className="my-3 mx-0">{data.map(render)}</section>;
-// }
-
-// function Footer({ children }) {
-//   if (!children) return null;
-
-//   return (
-//     <footer className="flex justify-center p-5 bg-gray-100">{children}</footer>
-//   );
-// }
-
-// Table.Header = Header;
-// Table.Row = Row;
-// Table.Body = Body;
-// Table.Footer = Footer;
 
 const TableContext = createContext();
 
@@ -88,10 +26,9 @@ function Header({ children }) {
   const { columns, setHeaders } = useContext(TableContext);
 
   useEffect(() => {
-    // Extract header labels (text content); empty <div></div> will be ""
     const headerLabels = Children.map(
       children,
-      (child) => child.props.children || ""
+      (child) => child.props.children || "",
     );
     setHeaders(headerLabels);
   }, [children]);
@@ -100,7 +37,7 @@ function Header({ children }) {
     <div
       role="row"
       as="header"
-      className="grid py-4 px-6 sm:py-6 sm:px-10 gap-3 sm:gap-5 bg-gray-200 border-b border-solid border-b-gray-100 uppercase tracking-tight sm:tracking-normal font-semibold text-gray-600 hidden sm:grid" // Hide on mobile (since labels move to rows), show grid on sm+
+      className="py-4 px-6 sm:py-6 sm:px-10 gap-3 sm:gap-5 bg-gray-200 border-b border-solid border-b-gray-100 uppercase tracking-tight sm:tracking-normal font-semibold text-gray-600 hidden sm:grid" // Hide on mobile (since labels move to rows), show grid on sm+
       style={{ gridTemplateColumns: columns }}
     >
       {children}
