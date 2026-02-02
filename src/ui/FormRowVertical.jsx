@@ -1,6 +1,6 @@
 export default function FormRowVertical({ label, children, error }) {
   return (
-    <div className="grid items-center grid-cols-[38rem] gap-2 py-5 px-0 first:pt-0 last:pb-0">
+    <div className="grid items-center justify-center gap-2 py-5 px-0 first:pt-0 last:pb-0 sm:grid-cols-[38rem]">
       <label className="font-semibold" htmlFor={children.props.id}>
         {label}
       </label>
