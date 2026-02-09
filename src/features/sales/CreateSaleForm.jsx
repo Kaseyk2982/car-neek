@@ -80,9 +80,6 @@ export default function CreateSaleFrom({ onCloseModal, onCloseForm }) {
               />
             )}
           />
-          <span className="text-sm font-bold text-indigo-600 text-center">
-            Don't forget to update vehicle to sold in vehicles table
-          </span>
         </div>
       </FormRow>
       <FormRow label="Select a customer" error={errors?.customerId?.message}>

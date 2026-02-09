@@ -7,7 +7,7 @@ export async function getSales({ filter, sortBy, page } = {}) {
     .from("sales")
     .select(
       "id, created_at, saleDate, salePrice, status, vehicles!sales_vehicleId_fkey(make, model, image), customers!sales_customerId_fkey1(fullName, email, phoneNumber)",
-      { count: "exact" }
+      { count: "exact" },
     );
 
   if (filter !== null) {
@@ -41,7 +41,7 @@ export async function getSale(id) {
   const { data, error } = await supabase
     .from("sales")
     .select(
-      "id, created_at, saleDate, salePrice, status, soldBy, pickupDate, downPayment, totalOwed, pickedUpAt, vehicles!sales_vehicleId_fkey(make, model, image, regularPrice), customers!sales_customerId_fkey1(fullName, email, phoneNumber)"
+      "id, created_at, saleDate, salePrice, status, soldBy, pickupDate, downPayment, totalOwed, pickedUpAt, vehicles!sales_vehicleId_fkey(make, model, image, regularPrice), customers!sales_customerId_fkey1(fullName, email, phoneNumber)",
     )
     .eq("id", id)
     .single();
@@ -107,7 +107,7 @@ export async function getTodaysPickups() {
   const { data, error } = await supabase
     .from("sales")
     .select(
-      "*, vehicles!sales_vehicleId_fkey(make, model), customers!sales_customerId_fkey1(fullName)"
+      "*, vehicles!sales_vehicleId_fkey(make, model), customers!sales_customerId_fkey1(fullName)",
     )
     .gte("pickupDate", yesterday.toISOString())
     .lt("pickupDate", tomorrow.toISOString());
@@ -146,15 +146,20 @@ export async function getCustomers() {
 }
 
 export async function createSale(newSale) {
-  const { data, error } = await supabase
+  const { data, error: saleError } = await supabase
     .from("sales")
     .insert([{ ...newSale }])
     .select()
     .single();
 
-  if (error) {
-    console.error(error);
+  if (saleError) {
+    console.error(saleError);
     throw new Error("Error creating sale");
   }
+  const { error: vehicleError } = await supabase
+    .from("vehicles")
+    .update({ isSold: true })
+    .eq("id", newSale.vehicleId);
+
   return data;
 }
