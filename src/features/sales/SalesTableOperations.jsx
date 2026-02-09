@@ -20,9 +20,9 @@ export default function SalesTableOperations() {
           { value: "vehicles(make)-desc", label: "Vehicles Z-A" },
           { value: "customers(fullName)-asc", label: "Customers A-Z" },
           { value: "customers(fullName)-desc", label: "Customers Z-A" },
-          { value: "saleDate-asc", label: "Sale Date Old to New" },
+          { value: "created_at-asc", label: "Sale Date Old to New" },
           {
-            value: "saleDate-desc",
+            value: "created_at-desc",
             label: "Sale Date New to Old",
           },
           { value: "salePrice-asc", label: "Sale Price Low to High" },
